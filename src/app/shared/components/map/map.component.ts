@@ -10,23 +10,19 @@ import { MAPBOX_TOKEN } from 'src/constants';
 })
 export class MapComponent implements OnInit {
   private map: mapboxgl.Map | null = null;
-  private style = 'mapbox://styles/mapbox/streets-v11';
   private lat = 37.75;
   private lng = -122.41;
 
-  constructor() { }
   ngOnInit() {
     this.map = new mapboxgl.Map({
       accessToken: MAPBOX_TOKEN,
-      container: 'map',
+      container: 'map-wrap',
       zoom: 13,
-      center: [this.lng, this.lat]
+      center: [this.lng, this.lat],
+      logoPosition: 'top-left',
     });
 
-    this.map.addControl(new mapboxgl.NavigationControl());
-    this.map.addControl(new mapboxgl.FullscreenControl());
-
-    const draw = new MapboxDraw({
+    const drawControls = new MapboxDraw({
       displayControlsDefault: false,
       controls: {
           polygon: true,
@@ -34,5 +30,9 @@ export class MapComponent implements OnInit {
       },
       defaultMode: 'draw_polygon'
     });
-    this.map.addControl(draw);
+
+    const zoomControls = new mapboxgl.NavigationControl();
+
+    this.map.addControl(zoomControls, 'top-left');
+    this.map.addControl(drawControls, 'top-left');
   }}
