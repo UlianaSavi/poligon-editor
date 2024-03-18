@@ -55,6 +55,11 @@
   z-index: 1;
 }
 
+.map__layer-edit__settings {
+  display: flex;
+  gap: 10px;
+}
+
 .map__layer-edit__title {
   margin-right: 5px;
 }

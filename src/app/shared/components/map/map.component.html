@@ -4,9 +4,11 @@
     <select formControlName="sourceId" name="select" id="select">
       <option *ngFor="let item of layersExstruded;" [value]="item.id">Id: <b>{{ item.id }}</b></option>
     </select>
-    <input formControlName="color" type="color" name="color" id="color">
-    <input formControlName="height" type="number" name="number" id="number">
-    <button type="submit">Apply</button>
-    <button *ngIf="exstrutionForm.value.sourceId.length" (click)="delete()" type="button">Delete</button>
+    <div class="map__layer-edit__settings" *ngIf="exstrutionForm.value.sourceId.length">
+      <input formControlName="color" type="color" name="color" id="color">
+      <input formControlName="height" type="number" name="number" id="number">
+      <button class="btn" type="submit">Apply</button>
+      <button class="btn" (click)="delete()" type="button">Delete</button>
+    </div>
   </form>
 </div>
