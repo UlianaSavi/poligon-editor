@@ -1,3 +1,8 @@
 <div id="map-wrap" class="map-wrap">
   <button class="extrude-btn" type="button" (click)="extrude()"></button>
+  <form *ngIf="exstutionForm" [formGroup]="exstutionForm" class="map__layer-edit" (submit)="editExstruded()">
+    <input formControlName="color" type="color" name="color" id="color">
+    <input formControlName="height" type="number" name="number" id="number">
+    <button type="submit">Apply</button>
+  </form>
 </div>
