@@ -3,7 +3,6 @@ import * as mapboxgl from 'mapbox-gl';
 import * as MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { MAPBOX_TOKEN } from 'src/constants';
 import { FormControl, FormGroup } from '@angular/forms';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-map',
@@ -111,8 +110,6 @@ export class MapComponent implements OnInit {
   }
 
   private updateLayersExstruded() {
-    console.log(this.map?.getStyle().layers);
-    console.log(this.map?.getStyle().sources);
     this.layersExstruded = this.map?.getStyle().layers.filter((layer) => layer.type === 'fill-extrusion') || []
   }
 }
