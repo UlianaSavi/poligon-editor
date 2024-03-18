@@ -3,3 +3,10 @@
 *::after {
   box-sizing: border-box;
 }
+
+:root {
+  --white: #ffffff;
+  --white-selected: #f2f2f2;
+  --transparent: transparent;
+  --lite-grey: #cacaca;
+}
