@@ -18,12 +18,12 @@
   - В левом верхнем углу расположена **панель навигации** по карте
   - Под панелью навигации расположены **инструменты управления полигонами** (создание && удаление).
   - **Редактирование** полигонов происходит по клику по точкам полигона:
-    - Зажав клавишу `shift` можно выделить несколько верщин выбранного полигона.
+    - Зажав клавишу `shift` можно выделить несколько вершин выбранного полигона.
     - Выбранные вершины можно передвигать удерживая левое колесо мыши и двигая его по карте таким образом растягивая полигон.
     - Выбранные вершины можно удалить нажав на клавишу `delete`.
     - Кликая по ребру между двумя вершинами происходит создание дополнительной вершины.
   - **3д полигон**:
-      - Выделите те полигоны, которым вы бы хотели задать высоту (или один). Учитывайте, что выделенные полигоны будут объеденены в один слой (то есть иметь одинаковые настройки).
+      - Выделите те полигоны, которым вы бы хотели задать высоту (или один)
       - Нажмите кнопку 3д куба, расположенную в нижней части панели навигации в левом верхнем углу приложения
       - Полигонам будет задана стандартная высота в 15 метров + появится форма редактрования слоев.
       - Чтобы управлять слоями полигонов выберете в верхнем правом углу один из слоев.
@@ -47,7 +47,7 @@
     - Selected vertices can be deleted by pressing the `delete` key.
     - By clicking on the edge between two vertices, an additional vertex is created.
   - **3d polygon**:
-    - Select the polygons that you would like to extrude (or one). Keep in mind that the selected polygons will be combined into one layer (they will have the same settings).
+    - Select the polygons that you would like to extrude (or one).
           - Click the 3d cube button located at the bottom of the navigation bar in the upper-left corner of the application
            Polygons will be set to a standard height of 15 meters + a layer editing form will appear.
            To manage polygon layers, select one of the layers in the upper-right corner.
