@@ -3,6 +3,7 @@ import * as mapboxgl from 'mapbox-gl';
 import * as MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { MAPBOX_TOKEN } from 'src/constants';
 import { FormControl, FormGroup } from '@angular/forms';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-map',
@@ -16,9 +17,9 @@ export class MapComponent implements OnInit {
   private lng = -122.41; // долгота
   private baseColor = '#faafee';
   private baseHeight = 15;
-  private sourceId: string | null = null;
 
-  public exstutionForm: FormGroup | null = null;
+  public exstrutionForm: FormGroup | null = null;
+  public layersExstruded: mapboxgl.AnyLayer[] | [] = [];
 
   public ngOnInit() {
     this.map = new mapboxgl.Map({
@@ -51,11 +52,11 @@ export class MapComponent implements OnInit {
     if (selectedItems) {
       selectedItems.features.map((item) => {
         // Create sourse for polygon
-        this.sourceId = String(item.id);
-        const source = this.map?.getSource(this.sourceId);
+        const sourceId = String(item.id);
+        const source = this.map?.getSource(sourceId);
 
         if (!source) {
-          this.map?.addSource(this.sourceId, {
+          this.map?.addSource(sourceId, {
             "type": "geojson",
             "data": selectedItems
           });
@@ -63,28 +64,53 @@ export class MapComponent implements OnInit {
 
         // Create layer for exstrude current polygon
         this.map?.addLayer({
-          'id': this.sourceId,
+          'id': sourceId,
           'type': 'fill-extrusion',
-          'source': this.sourceId,
+          'source': sourceId,
           'paint': {
               'fill-extrusion-color': this.baseColor,
               'fill-extrusion-height': this.baseHeight,
           }
         });
-        this.polygonDrawControls?.delete(this.sourceId);
-
-        this.exstutionForm = new FormGroup({
-          color: new FormControl(this.baseColor),
-          height: new FormControl(this.baseHeight),
+        this.polygonDrawControls?.delete(sourceId);
+        this.updateLayersExstruded();
+        this.exstrutionForm = new FormGroup({
+          sourceId: new FormControl<string>(''),
+          color: new FormControl<string>(this.baseColor),
+          height: new FormControl<number>(this.baseHeight),
         });
       })
     }
   }
 
   public editExstruded() {
-    if (this.sourceId && this.exstutionForm) {
-      this.map?.setPaintProperty(this.sourceId, 'fill-extrusion-color', this.exstutionForm.value.color);
-      this.map?.setPaintProperty(this.sourceId, 'fill-extrusion-height', this.exstutionForm.value.height);
+    if (this.exstrutionForm) {
+      this.map?.setPaintProperty(
+        this.exstrutionForm.value.sourceId,
+        'fill-extrusion-color',
+        this.exstrutionForm.value.color);
+
+      this.map?.setPaintProperty(
+        this.exstrutionForm.value.sourceId,
+        'fill-extrusion-height',
+        this.exstrutionForm.value.height);
     }
+  }
+
+  public delete() {
+    if (this.exstrutionForm) {
+      this.map?.removeLayer(this.exstrutionForm.value.sourceId)
+      this.map?.removeSource(this.exstrutionForm.value.sourceId)
+      this.updateLayersExstruded();
+      if (!this.layersExstruded.length) {
+        this.exstrutionForm = null;
+        return;
+      }
+      this.exstrutionForm.value.sourceId = '';
+    }
+  }
+
+  private updateLayersExstruded() {
+    this.layersExstruded = this.map?.getStyle().layers.filter((layer) => layer.type === 'fill-extrusion') || []
   }
 }

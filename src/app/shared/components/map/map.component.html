@@ -1,8 +1,12 @@
 <div id="map-wrap" class="map-wrap">
   <button class="extrude-btn" type="button" (click)="extrude()"></button>
-  <form *ngIf="exstutionForm" [formGroup]="exstutionForm" class="map__layer-edit" (submit)="editExstruded()">
+  <form *ngIf="exstrutionForm" [formGroup]="exstrutionForm" class="map__layer-edit" (submit)="editExstruded()">
+    <select formControlName="sourceId" name="select" id="select">
+      <option *ngFor="let item of layersExstruded;" [value]="item.id">Id: <b>{{ item.id }}</b></option>
+    </select>
     <input formControlName="color" type="color" name="color" id="color">
     <input formControlName="height" type="number" name="number" id="number">
     <button type="submit">Apply</button>
+    <button *ngIf="exstrutionForm.value.sourceId.length" (click)="delete()" type="button">Delete</button>
   </form>
 </div>
