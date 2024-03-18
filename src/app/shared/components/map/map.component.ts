@@ -3,7 +3,6 @@ import * as mapboxgl from 'mapbox-gl';
 import * as MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { MAPBOX_TOKEN } from 'src/constants';
 import { FormControl, FormGroup } from '@angular/forms';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-map',
