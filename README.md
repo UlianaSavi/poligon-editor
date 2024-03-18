@@ -1,5 +1,5 @@
-# poligon-editor
-Angular app for work with Mapbox SDK maps. Provides a poligon editor.
+# Polygon editor
+### Angular app for work with Mapbox SDK maps. Provides a poligon editor.
 ![изображение](https://github.com/UlianaSavi/poligon-editor/assets/105851981/29032379-c7e6-4638-9430-85110a4a99d1)
 ![изображение](https://github.com/UlianaSavi/poligon-editor/assets/105851981/24281a69-f172-487a-a491-54fb050ba8c5)
 
