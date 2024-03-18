@@ -58,7 +58,7 @@ export class MapComponent implements OnInit {
         if (!source) {
           this.map?.addSource(sourceId, {
             "type": "geojson",
-            "data": selectedItems
+            "data": item
           });
         }
 
@@ -111,6 +111,8 @@ export class MapComponent implements OnInit {
   }
 
   private updateLayersExstruded() {
+    console.log(this.map?.getStyle().layers);
+    console.log(this.map?.getStyle().sources);
     this.layersExstruded = this.map?.getStyle().layers.filter((layer) => layer.type === 'fill-extrusion') || []
   }
 }

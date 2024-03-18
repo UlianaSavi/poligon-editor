@@ -4,12 +4,13 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 
 enum Paths {
   emplty = '',
-  main = 'main',
+  deploy = 'poligon-editor',
+  main = 'poligon-editor',
 }
 
 const routes: Routes = [
   { path: Paths.emplty, redirectTo: Paths.main, pathMatch: 'full' },
-  { path: 'main', component: MainPageComponent },
+  { path: Paths.deploy, component: MainPageComponent },
 ];
 
 @NgModule({
